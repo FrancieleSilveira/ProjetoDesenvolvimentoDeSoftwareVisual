@@ -1,0 +1,39 @@
+### Cadastrar um novo enfermeiro
+POST https://localhost:5001/api/enfermeiro/create
+Content-Type: application/json
+
+{
+    "Nome" : "Breno",
+    "Sobrenome" : "Machado",
+    "Matricula" : "123",
+    "Cpf" : "456",
+    "Idade" : "35",
+    "Telefone" : "999999",
+    "Email" : "breno@email",
+    "Endereco" : "rua a"
+}
+
+### Listar todos os enfermeiros
+GET https://localhost:5001/api/enfermeiro/list
+
+### Buscar um enfermeiro pelo id
+GET https://localhost:5001/api/enfermeiro/getbyid/1
+
+### Deletar um enfermeiro pelo nome
+DELETE https://localhost:5001/api/enfermeiro/delete/Breno
+
+### Alterar um enfermeiro pelo id
+PUT https://localhost:5001/api/enfermeiro/update
+Content-Type: application/json
+
+{
+    "Id" : 2,
+    "Nome" : "Joao",
+    "Sobrenome" : "Machado",
+    "Matricula" : "123",
+    "Cpf" : "456",
+    "Idade" : "35",
+    "Telefone" : "999999",
+    "Email" : "breno@email",
+    "Endereco" : "rua a"
+}

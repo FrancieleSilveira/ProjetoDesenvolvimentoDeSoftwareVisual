@@ -1,6 +1,8 @@
 using System;
+using API.Data;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,7 +28,7 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            Services.AddDbContext<DataContext>(
+            services.AddDbContext<DataContext>(
                 options => options.UseInMemoryDatabase("Database")
             );
 
