@@ -1,0 +1,54 @@
+POST https://localhost:5001/api/paciente/create
+Content-Type: application/json
+
+{
+    "Nome" : "Rogerin",
+    "Sobrenome" : "D.",
+    "Matricula" : "321123",
+    "Cpf" : "321",
+    "Idade" : "35",
+    "Telefone" : "999999",
+    "Email" : "goldRoger@email",
+    "Endereco" : "rua dos piratas"
+}
+
+###
+POST https://localhost:5001/api/paciente/create
+Content-Type: application/json
+
+{
+    "Nome" : "Gold D ROGER",
+    "Sobrenome" : "D.",
+    "Matricula" : "321123",
+    "Cpf" : "123",
+    "Idade" : "35",
+    "Telefone" : "999999",
+    "Email" : "goldRoger@email",
+    "Endereco" : "rua dos piratas"
+}
+
+
+### Listar todos os pacientes
+GET https://localhost:5001/api/paciente/list
+
+### Deletar um paciente
+DELETE https://localhost:5001/api/paciente/delete/2
+
+### Atualizar um paciente, POR CPF
+PUT https://localhost:5001/api/paciente/update
+Content-Type: application/json
+
+{
+    "Id": 2,
+    "Nome" : "RogerINO",
+    "Sobrenome" : "D.",
+    "Matricula" : "321",
+    "Cpf" : "321",
+    "Idade" : "35",
+    "Telefone" : "999999",
+    "Email" : "goldRoger@email",
+    "Endereco" : "rua dos piratas"
+}
+
+### Get BY ID
+GET https://localhost:5001/api/paciente/getbyid/1

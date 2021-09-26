@@ -15,7 +15,7 @@ namespace API.Data
 
 
         //Tabela de pacientes cadastrados
-
+        public DbSet<Paciente> Pacientes { get; set; }
 
         //Tabela de sintomas cadastrados
         public DbSet<Sintoma> Sintomas { get; set; }
