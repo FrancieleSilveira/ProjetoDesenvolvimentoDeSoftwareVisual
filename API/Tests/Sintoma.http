@@ -1,0 +1,28 @@
+### Cadastrar um novo sintoma
+POST https://localhost:5001/api/sintoma/create
+Content-Type: application/json
+
+{
+    "Nome" : "Dor",
+    "GrauIntensidade" : "10"
+
+}
+
+### Listar todos os sintomas
+GET https://localhost:5001/api/sintoma/list
+
+### Buscar um sintoma pelo id
+GET https://localhost:5001/api/sintoma/getbyid/1
+
+### Deletar um sintoma pelo nome
+DELETE https://localhost:5001/api/sintoma/delete/Dor
+
+### Alterar um sintoma pelo id
+PUT https://localhost:5001/api/sintoma/update
+Content-Type: application/json
+
+{
+    "Id" : 2,
+    "Nome" : "Dor",
+    "GrauIntensidade" : "5"
+}
