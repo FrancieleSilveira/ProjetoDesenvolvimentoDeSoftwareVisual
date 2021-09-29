@@ -1,9 +1,11 @@
 using System;
+
 namespace API.Models
 {
     public class Pessoa
     {
         public Pessoa() => CriadoEm = DateTime.Now;
+
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
         public string Cpf { get; set; }

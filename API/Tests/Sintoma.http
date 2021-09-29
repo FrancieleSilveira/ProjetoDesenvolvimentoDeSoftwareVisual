@@ -5,7 +5,24 @@ Content-Type: application/json
 {
     "Nome" : "Dor",
     "GrauIntensidade" : "10"
+}
 
+### Cadastrar um novo sintoma
+POST https://localhost:5001/api/sintoma/create
+Content-Type: application/json
+
+{
+    "Nome" : "Febre",
+    "GrauIntensidade" : "10"
+}
+
+### Cadastrar um novo sintoma
+POST https://localhost:5001/api/sintoma/create
+Content-Type: application/json
+
+{
+    "Nome" : "Nausea",
+    "GrauIntensidade" : "10"
 }
 
 ### Listar todos os sintomas

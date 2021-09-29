@@ -10,6 +10,7 @@ namespace API.Controllers
     public class SintomaController : ControllerBase
     {
         private readonly DataContext _context;
+
         public SintomaController(DataContext context)
         {
             _context = context;
@@ -36,7 +37,7 @@ namespace API.Controllers
         public IActionResult GetById([FromRoute] int id)
         {
             Sintoma sintoma = _context.Sintomas.Find(id);
-            if (sintoma == null) return NotFound(); // TESTAR
+            if (sintoma == null) return NotFound();
             return Ok(sintoma);
         }
 
@@ -45,9 +46,8 @@ namespace API.Controllers
         [Route("delete/{nome}")]
         public IActionResult Delete([FromRoute] string nome)
         {
-            Sintoma sintoma = _context.Sintomas.FirstOrDefault
-            (
-                e => e.Nome == nome
+            Sintoma sintoma = _context.Sintomas.FirstOrDefault(
+                s => s.Nome == nome
             );
             if (sintoma == null)
             {

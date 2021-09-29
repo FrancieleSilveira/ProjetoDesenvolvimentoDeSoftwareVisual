@@ -10,29 +10,62 @@ namespace API.Controllers
     [Route("api/paciente")]
     public class PacienteController : ControllerBase
     {
-
         private readonly DataContext _context;
-        public PacienteController(DataContext context){
+
+        public PacienteController(DataContext context)
+        {
             _context = context;
         }
 
+        //POST: api/paciente/create
         [HttpPost]
         [Route("create")]
-        public IActionResult Create(Paciente paciente){
+        public IActionResult Create([FromBody] Paciente paciente)
+        {
             _context.Pacientes.Add(paciente);
             _context.SaveChanges();
-            return Created("", paciente);  
+            return Created("", paciente);
         }
 
+        //GET: api/paciente/list
         [HttpGet]
         [Route("list")]
-        public IActionResult Listar(){
+        public IActionResult List()
+        {
             return Ok(_context.Pacientes.ToList());
         }
 
+        //GET: api/paciente/getbyid/1
+        [HttpGet]
+        [Route("getbyid/{id}")]
+        public IActionResult GetById([FromRoute] int id)
+        {
+            Paciente paciente = _context.Pacientes.Find(id);
+            if (paciente == null) return NotFound();
+            return Ok(paciente);
+        }
+
+        //GET: api/paciente/getbyname/Roger
+        [HttpGet]
+        [Route("getbyname/{name}")]
+        public IActionResult GetByName([FromRoute] string name)
+        {
+           Paciente paciente = _context.Pacientes.FirstOrDefault(
+                paciente => paciente.Nome == name
+            );
+            if (paciente == null)
+            {
+                return NotFound();
+            }
+            return Ok(paciente);
+            //return OK(_context.Pacientes.ToList()); retorna lista atualizada
+        }
+
+        //DELETE: api/paciente/delete/2
         [HttpDelete]
         [Route("delete/{id}")]
-        public IActionResult Deletar([FromRoute] int id){
+        public IActionResult Delete([FromRoute] int id)
+        {
             Paciente paciente = _context.Pacientes.FirstOrDefault(
                 paciente => paciente.Id == id
             );
@@ -41,10 +74,12 @@ namespace API.Controllers
             return Ok(paciente);
         }
 
+        //PUT: api/paciente/update
         [HttpPut]
         [Route("update")]
-        public IActionResult Update(Paciente pacienteAtualizado){
-            _context.Pacientes.Update(pacienteAtualizado);
+        public IActionResult Update([FromBody] Paciente paciente)
+        {
+            _context.Pacientes.Update(paciente);
             _context.SaveChanges();
             // int id;
             // Paciente paciente = _context.Pacientes.FirstOrDefault(
@@ -56,18 +91,7 @@ namespace API.Controllers
             // pacienteAtualizado.Id = id;
             // _context.Pacientes.Add(pacienteAtualizado);
             // _context.SaveChanges();
-            return Ok(pacienteAtualizado);
-        }
-
-        [HttpGet]
-        [Route("getbyid/{id}")]
-        public IActionResult GetById([FromRoute] int id){
-           Paciente paciente = _context.Pacientes.FirstOrDefault(
-                paciente => paciente.Id == id
-            );
             return Ok(paciente);
         }
     }
-
-    
 }

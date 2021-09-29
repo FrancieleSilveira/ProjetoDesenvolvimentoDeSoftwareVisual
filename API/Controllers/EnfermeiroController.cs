@@ -10,6 +10,7 @@ namespace API.Controllers
     public class EnfermeiroController : ControllerBase
     {
         private readonly DataContext _context;
+
         public EnfermeiroController(DataContext context)
         {
             _context = context;
@@ -36,26 +37,37 @@ namespace API.Controllers
         public IActionResult GetById([FromRoute] int id)
         {
             Enfermeiro enfermeiro = _context.Enfermeiros.Find(id);
-            if (enfermeiro == null) return NotFound(); // TESTAR
+            if (enfermeiro == null) return NotFound();
             return Ok(enfermeiro);
         }
 
-        // DELETE: api/enfermeiro/delete/Breno
-        [HttpDelete]
-        [Route("delete/{nome}")]
-        public IActionResult Delete([FromRoute] string nome)
+        //GET: api/enfermeiro/getbyname/Fran
+        [HttpGet]
+        [Route("getbyname/{name}")]
+        public IActionResult GetByName([FromRoute] string name)
         {
-            Enfermeiro enfermeiro = _context.Enfermeiros.FirstOrDefault
-            (
-                e => e.Nome == nome
+            Enfermeiro enfermeiro = _context.Enfermeiros.FirstOrDefault(
+                enfermeiro => enfermeiro.Nome == name
             );
             if (enfermeiro == null)
             {
                 return NotFound();
             }
+            return Ok(enfermeiro);
+            //return OK(_context.Enfermeiros.ToList()); retorna lista atualizada
+        }
+
+        // DELETE: api/enfermeiro/delete/2
+        [HttpDelete]
+        [Route("delete/{id}")]
+        public IActionResult Delete([FromRoute] int id)
+        {
+            Enfermeiro enfermeiro = _context.Enfermeiros.FirstOrDefault(
+                e => e.Id == id
+            );
             _context.Enfermeiros.Remove(enfermeiro);
             _context.SaveChanges();
-            return Ok();
+            return Ok(enfermeiro);
             //return Ok(_context.Produtos.ToList()); retorna a lista atualizada
         }
 

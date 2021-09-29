@@ -5,7 +5,6 @@ namespace API.Data
 {
     public class DataContext : DbContext
     {
-
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         //Lista de propriedades que vão virar tabelas no banco
@@ -13,13 +12,11 @@ namespace API.Data
         //Tabela de enfermeiros cadastrados
         public DbSet<Enfermeiro> Enfermeiros { get; set; }
 
-
         //Tabela de pacientes cadastrados
         public DbSet<Paciente> Pacientes { get; set; }
 
         //Tabela de sintomas cadastrados
         public DbSet<Sintoma> Sintomas { get; set; }
-
 
     }
 }

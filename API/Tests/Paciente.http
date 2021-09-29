@@ -1,3 +1,4 @@
+### Cadastrar novo paciente
 POST https://localhost:5001/api/paciente/create
 Content-Type: application/json
 
@@ -12,7 +13,7 @@ Content-Type: application/json
     "Endereco" : "rua dos piratas"
 }
 
-###
+### Cadastrar novo paciente
 POST https://localhost:5001/api/paciente/create
 Content-Type: application/json
 
@@ -27,28 +28,45 @@ Content-Type: application/json
     "Endereco" : "rua dos piratas"
 }
 
-
-### Listar todos os pacientes
-GET https://localhost:5001/api/paciente/list
-
-### Deletar um paciente
-DELETE https://localhost:5001/api/paciente/delete/2
-
-### Atualizar um paciente, POR CPF
-PUT https://localhost:5001/api/paciente/update
+### Cadastrar novo paciente
+POST https://localhost:5001/api/paciente/create
 Content-Type: application/json
 
 {
-    "Id": 2,
-    "Nome" : "RogerINO",
+    "Nome" : "Roger",
     "Sobrenome" : "D.",
-    "Matricula" : "321",
-    "Cpf" : "321",
+    "Matricula" : "12345",
+    "Cpf" : "123456",
     "Idade" : "35",
     "Telefone" : "999999",
     "Email" : "goldRoger@email",
     "Endereco" : "rua dos piratas"
 }
 
-### Get BY ID
+### Listar todos os pacientes
+GET https://localhost:5001/api/paciente/list
+
+### Buscar paciente pelo id
 GET https://localhost:5001/api/paciente/getbyid/1
+
+### Buscar paciente pelo nome
+GET https://localhost:5001/api/paciente/getbyname/Roger
+
+### Deletar um paciente pelo id
+DELETE https://localhost:5001/api/paciente/delete/2
+
+### Atualizar um paciente pelo id
+PUT https://localhost:5001/api/paciente/update
+Content-Type: application/json
+
+{
+    "Id": 1,
+    "Nome" : "RogerINO",
+    "Sobrenome" : "D.",
+    "Matricula" : "123",
+    "Cpf" : "123",
+    "Idade" : "35",
+    "Telefone" : "999999",
+    "Email" : "goldRoger@email",
+    "Endereco" : "rua dos piratas"
+}
