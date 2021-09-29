@@ -1,0 +1,49 @@
+### Cadastrar um novo convenio
+POST https://localhost:5001/api/convenio/create
+Content-Type: application/json
+
+{
+    "Nome" : "Amil",
+    "Endereco" : "Rua a",
+    "Telefone" : "99999999"
+}
+
+### Cadastrar um novo convenio
+POST https://localhost:5001/api/convenio/create
+Content-Type: application/json
+
+{
+    "Nome" : "Unimed",
+    "Endereco" : "Rua b",
+    "Telefone" : "88888888"
+}
+
+### Cadastrar um novo convenio
+POST https://localhost:5001/api/convenio/create
+Content-Type: application/json
+
+{
+    "Nome" : "Medprev",
+    "Endereco" : "Rua c",
+    "Telefone" : "77777777"
+}
+
+### Listar todos os convenios
+GET https://localhost:5001/api/convenio/list
+
+### Buscar um convenio pelo id
+GET https://localhost:5001/api/convenio/getbyid/1
+
+### Deletar um convenio pelo nome
+DELETE https://localhost:5001/api/convenio/delete/Unimed
+
+### Alterar um convenio pelo id
+PUT https://localhost:5001/api/convenio/update
+Content-Type: application/json
+
+{
+    "Id" : 3,
+    "Nome" : "Convenio A",
+    "Endereco" : "Rua d",
+    "Telefone" : "66666666"
+}
