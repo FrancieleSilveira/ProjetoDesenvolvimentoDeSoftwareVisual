@@ -3,11 +3,11 @@ POST https://localhost:5001/api/paciente/create
 Content-Type: application/json
 
 {
+    "ConvenioId" : 1,
     "Nome" : "Rogerin",
     "Sobrenome" : "D.",
-    "Matricula" : "321123",
     "Cpf" : "321",
-    "Idade" : "35",
+    "DataNascimento" : "35",
     "Telefone" : "999999",
     "Email" : "goldRoger@email",
     "Endereco" : "rua dos piratas"
@@ -20,9 +20,8 @@ Content-Type: application/json
 {
     "Nome" : "Gold D ROGER",
     "Sobrenome" : "D.",
-    "Matricula" : "321123",
     "Cpf" : "123",
-    "Idade" : "35",
+    "DataNascimento" : "35",
     "Telefone" : "999999",
     "Email" : "goldRoger@email",
     "Endereco" : "rua dos piratas"
@@ -33,9 +32,9 @@ POST https://localhost:5001/api/paciente/create
 Content-Type: application/json
 
 {
+    "ConvenioId" : 2,
     "Nome" : "Roger",
     "Sobrenome" : "D.",
-    "Matricula" : "12345",
     "Cpf" : "123456",
     "Idade" : "35",
     "Telefone" : "999999",
@@ -47,7 +46,7 @@ Content-Type: application/json
 GET https://localhost:5001/api/paciente/list
 
 ### Buscar paciente pelo id
-GET https://localhost:5001/api/paciente/getbyid/1
+GET https://localhost:5001/api/paciente/getbyid/3
 
 ### Buscar paciente pelo nome
 GET https://localhost:5001/api/paciente/getbyname/Roger

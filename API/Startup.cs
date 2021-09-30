@@ -29,9 +29,9 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             //Configurar a política de CORS para requisições de qualquer origem
+            
             services.AddCors(
-                options =>
-                {
+                options => {
                     options.AddPolicy("CorsPolicy", builder => builder
                         .AllowAnyOrigin()
                         .AllowAnyMethod()
@@ -39,7 +39,6 @@ namespace API
                 }
             );
 
-            //Configurar todas as injeções de dependência do seu projeto
             services.AddDbContext<DataContext>(
                 options => options.UseInMemoryDatabase("database")
             );

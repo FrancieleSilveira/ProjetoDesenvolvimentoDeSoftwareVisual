@@ -22,6 +22,12 @@ namespace API.Controllers
         [Route("create")]
         public IActionResult Create([FromBody] Paciente paciente)
         {
+            Convenio convenio = _context.Convenios.FirstOrDefault(
+                c => c.Id == paciente.ConvenioId
+            );
+
+            paciente.Convenio = convenio;
+
             _context.Pacientes.Add(paciente);
             _context.SaveChanges();
             return Created("", paciente);
@@ -81,16 +87,6 @@ namespace API.Controllers
         {
             _context.Pacientes.Update(paciente);
             _context.SaveChanges();
-            // int id;
-            // Paciente paciente = _context.Pacientes.FirstOrDefault(
-            //     paciente => paciente.Cpf == cpf
-            // );
-            // id = paciente.Id;
-            // _context.Pacientes.Remove(paciente);
-            // _context.SaveChanges();
-            // pacienteAtualizado.Id = id;
-            // _context.Pacientes.Add(pacienteAtualizado);
-            // _context.SaveChanges();
             return Ok(paciente);
         }
     }
