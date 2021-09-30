@@ -7,7 +7,7 @@ Content-Type: application/json
     "Sobrenome" : "D.",
     "Matricula" : "321123",
     "Cpf" : "321",
-    "Idade" : "35",
+    "DataNascimento" : "35",
     "Telefone" : "999999",
     "Email" : "goldRoger@email",
     "Endereco" : "rua dos piratas"
@@ -22,7 +22,7 @@ Content-Type: application/json
     "Sobrenome" : "D.",
     "Matricula" : "321123",
     "Cpf" : "123",
-    "Idade" : "35",
+    "DataNascimento" : "35",
     "Telefone" : "999999",
     "Email" : "goldRoger@email",
     "Endereco" : "rua dos piratas"

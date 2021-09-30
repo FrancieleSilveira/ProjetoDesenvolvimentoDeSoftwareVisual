@@ -8,7 +8,7 @@ namespace API.Models
         public int Matricula { get; set; }
 
         public override string ToString() =>
-            $"ID: {Id} | Nome: {Nome} | Sobrenome: {Sobrenome} | Matrícula: {Matricula} | Cpf: {Cpf} | Idade: {Idade} | Telefone: {Telefone} | Email: {Email} | Endereço: {Endereco} | Criado em: {CriadoEm}";
+            $"ID: {Id} | Nome: {Nome} | Sobrenome: {Sobrenome} | Matrícula: {Matricula} | Cpf: {Cpf} | Idade: {DataNascimento} | Telefone: {Telefone} | Email: {Email} | Endereço: {Endereco} | Criado em: {CriadoEm}";
 
     }
 }
