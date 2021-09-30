@@ -41,13 +41,13 @@ namespace API.Controllers
             return Ok(sintoma);
         }
 
-        // DELETE: api/sintoma/delete/Dor
+        // DELETE: api/sintoma/delete/1
         [HttpDelete]
-        [Route("delete/{nome}")]
-        public IActionResult Delete([FromRoute] string nome)
+        [Route("delete/{id}")]
+        public IActionResult Delete([FromRoute] int id)
         {
             Sintoma sintoma = _context.Sintomas.FirstOrDefault(
-                s => s.Nome == nome
+                s => s.Id == id
             );
             if (sintoma == null)
             {

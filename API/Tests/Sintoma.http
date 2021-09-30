@@ -31,8 +31,8 @@ GET https://localhost:5001/api/sintoma/list
 ### Buscar um sintoma pelo id
 GET https://localhost:5001/api/sintoma/getbyid/1
 
-### Deletar um sintoma pelo nome
-DELETE https://localhost:5001/api/sintoma/delete/Dor
+### Deletar um sintoma pelo id
+DELETE https://localhost:5001/api/sintoma/delete/1
 
 ### Alterar um sintoma pelo id
 PUT https://localhost:5001/api/sintoma/update

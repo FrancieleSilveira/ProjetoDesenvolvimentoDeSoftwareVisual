@@ -10,6 +10,6 @@ namespace API.Models
         public String Nome { get; set; }
         public int GrauIntensidade { get; set; }
 
-        public override string ToString() => $"Nome: {Nome} | Grau de intensidade: {GrauIntensidade}";
+        public override string ToString() => $" Id: {Id} |Nome: {Nome} | Grau de intensidade: {GrauIntensidade}";
     }
 }
