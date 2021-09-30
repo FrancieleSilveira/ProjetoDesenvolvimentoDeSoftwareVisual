@@ -4,9 +4,6 @@ namespace API.Models
 {
     public class Enfermeiro : Pessoa
     {
-
-        public Enfermeiro() => CriadoEm = DateTime.Now;
-
         public int Id { get; set; }
         public int Matricula { get; set; }
 

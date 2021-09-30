@@ -18,5 +18,8 @@ namespace API.Data
         //Tabela de sintomas cadastrados
         public DbSet<Sintoma> Sintomas { get; set; }
 
+        //Tabela de convenios cadastrados
+        public DbSet<Convenio> Convenios { get; set; }
+
     }
 }

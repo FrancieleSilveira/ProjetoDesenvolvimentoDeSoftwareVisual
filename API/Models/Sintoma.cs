@@ -4,7 +4,6 @@ namespace API.Models
 {
     public class Sintoma
     {
-
         public Sintoma() {}
 
         public int Id { get; set; }
@@ -12,7 +11,5 @@ namespace API.Models
         public int GrauIntensidade { get; set; }
 
         public override string ToString() => $"Nome: {Nome} | Grau de intensidade: {GrauIntensidade}";
-
-
     }
 }
