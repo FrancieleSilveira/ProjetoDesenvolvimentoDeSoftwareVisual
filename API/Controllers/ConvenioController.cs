@@ -49,10 +49,12 @@ namespace API.Controllers
             Convenio convenio = _context.Convenios.FirstOrDefault(
                 c => c.Nome == nome
             );
+
             if (convenio == null)
             {
                 return NotFound();
             }
+
             _context.Convenios.Remove(convenio);
             _context.SaveChanges();
             return Ok();
@@ -63,7 +65,7 @@ namespace API.Controllers
         [Route("update")]
         public IActionResult Update([FromBody] Convenio convenio)
         {
-            _context.Convenios.Update(convenio); // altera pelo id
+            _context.Convenios.Update(convenio);
             _context.SaveChanges();
             return Ok(convenio);
         }

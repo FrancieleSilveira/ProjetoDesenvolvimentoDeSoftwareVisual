@@ -63,7 +63,7 @@ namespace API.Controllers
         [Route("update")]
         public IActionResult Update([FromBody] Sintoma sintoma)
         {
-            _context.Sintomas.Update(sintoma); // altera pelo id
+            _context.Sintomas.Update(sintoma);
             _context.SaveChanges();
             return Ok(sintoma);
         }

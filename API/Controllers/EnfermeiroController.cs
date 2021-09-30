@@ -49,12 +49,14 @@ namespace API.Controllers
             Enfermeiro enfermeiro = _context.Enfermeiros.FirstOrDefault(
                 enfermeiro => enfermeiro.Nome == name
             );
+            
             if (enfermeiro == null)
             {
                 return NotFound();
             }
+
             return Ok(enfermeiro);
-            //return OK(_context.Enfermeiros.ToList()); retorna lista atualizada
+
         }
 
         // DELETE: api/enfermeiro/delete/2
@@ -65,10 +67,10 @@ namespace API.Controllers
             Enfermeiro enfermeiro = _context.Enfermeiros.FirstOrDefault(
                 e => e.Id == id
             );
+
             _context.Enfermeiros.Remove(enfermeiro);
             _context.SaveChanges();
             return Ok(enfermeiro);
-            //return Ok(_context.Produtos.ToList()); retorna a lista atualizada
         }
 
         //PUT: api/enfermeiro/update
@@ -76,7 +78,7 @@ namespace API.Controllers
         [Route("update")]
         public IActionResult Update([FromBody] Enfermeiro enfermeiro)
         {
-            _context.Enfermeiros.Update(enfermeiro); // altera pelo id
+            _context.Enfermeiros.Update(enfermeiro);
             _context.SaveChanges();
             return Ok(enfermeiro);
         }

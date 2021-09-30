@@ -19,7 +19,7 @@ namespace API.Models
         public DateTime CriadoEm {get; set;}
 
         public override string ToString() =>
-            $"ID: {Id} | Nome: {Nome} | Sobrenome: {Sobrenome} | Cpf: {Cpf} | Idade: {DataNascimento} | Telefone: {Telefone} | Email: {Email} | Endereço: {Endereco} | Criado em: {CriadoEm}";
+            $"ID: {Id} | Convenio: { Convenio } | Nome: {Nome} | Sobrenome: {Sobrenome} | Cpf: {Cpf} | Idade: {DataNascimento} | Telefone: {Telefone} | Email: {Email} | Endereço: {Endereco} | Criado em: {CriadoEm}";
 
     }
 }

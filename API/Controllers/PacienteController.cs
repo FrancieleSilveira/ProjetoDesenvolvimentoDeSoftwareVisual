@@ -3,6 +3,8 @@ using API.Models;
 using System.Linq;
 using System;
 using API.Data;
+using System.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -38,7 +40,7 @@ namespace API.Controllers
         [Route("list")]
         public IActionResult List()
         {
-            return Ok(_context.Pacientes.ToList());
+            return Ok(_context.Pacientes.Include(p => p.Convenio).ToList());
         }
 
         //GET: api/paciente/getbyid/1
@@ -48,6 +50,7 @@ namespace API.Controllers
         {
             Paciente paciente = _context.Pacientes.Find(id);
             if (paciente == null) return NotFound();
+
             return Ok(paciente);
         }
 
@@ -64,7 +67,6 @@ namespace API.Controllers
                 return NotFound();
             }
             return Ok(paciente);
-            //return OK(_context.Pacientes.ToList()); retorna lista atualizada
         }
 
         //DELETE: api/paciente/delete/2
@@ -75,6 +77,7 @@ namespace API.Controllers
             Paciente paciente = _context.Pacientes.FirstOrDefault(
                 paciente => paciente.Id == id
             );
+
             _context.Pacientes.Remove(paciente);
             _context.SaveChanges();
             return Ok(paciente);

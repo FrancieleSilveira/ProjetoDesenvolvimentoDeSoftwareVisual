@@ -56,11 +56,10 @@ GET https://localhost:5001/api/enfermeiro/getbyname/Ana
 DELETE https://localhost:5001/api/enfermeiro/delete/1
 
 ### Alterar um enfermeiro pelo id
-PUT https://localhost:5001/api/enfermeiro/update
+PUT https://localhost:5001/api/enfermeiro/update/1
 Content-Type: application/json
 
 {
-    "Id" : 2,
     "Nome" : "Joao",
     "Sobrenome" : "Machado",
     "Matricula" : "123",
