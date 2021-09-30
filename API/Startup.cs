@@ -33,10 +33,10 @@ namespace API
                     options.AddPolicy("CorsPolicy", builder => builder
                         .AllowAnyOrigin()
                         .AllowAnyMethod()
-                        .AllowAnyHeader());;
+                        .AllowAnyHeader());
                 }
             );
-            
+
             services.AddDbContext<DataContext>(
                 options => options.UseInMemoryDatabase("Database")
             );
