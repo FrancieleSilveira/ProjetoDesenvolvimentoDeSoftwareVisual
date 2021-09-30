@@ -24,8 +24,11 @@ namespace API.Controllers
         [Route("create")]
         public IActionResult Create([FromBody] Paciente paciente)
         {
+            // Convenio convenio = _context.Convenios.FirstOrDefault(
+            //     c => c.Id == paciente.ConvenioId
+            // );
             Convenio convenio = _context.Convenios.FirstOrDefault(
-                c => c.Id == paciente.ConvenioId
+                c => c.Nome == paciente.ConvenioNome
             );
 
             paciente.Convenio = convenio;
