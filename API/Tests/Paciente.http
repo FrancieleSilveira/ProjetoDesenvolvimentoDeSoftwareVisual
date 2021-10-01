@@ -3,7 +3,7 @@ POST https://localhost:5001/api/paciente/create
 Content-Type: application/json
 
 {
-    "ConvenioNome" : "Amil",
+    "ConvenioId" : 1,
     "Nome" : "José",
     "Sobrenome" : "Duarte",
     "Cpf" : "321",
@@ -18,7 +18,7 @@ POST https://localhost:5001/api/paciente/create
 Content-Type: application/json
 
 {
-    "ConvenioNome" : "Unimed",
+    "ConvenioId" : 2,
     "Nome" : "Bruno",
     "Sobrenome" : "Silva",
     "Cpf" : "123",
@@ -33,7 +33,7 @@ POST https://localhost:5001/api/paciente/create
 Content-Type: application/json
 
 {
-    "ConvenioNome" : "Amil",
+    "ConvenioId" : 1,
     "Nome" : "Roger",
     "Sobrenome" : "D.",
     "Cpf" : "123456",
@@ -61,7 +61,7 @@ Content-Type: application/json
 
 {
     "Id": 1,
-    "ConvenioId" : 2,
+    "ConvenioId" : 3,
     "Nome" : "Maria",
     "Sobrenome" : "Eduarda",
     "Matricula" : "123",

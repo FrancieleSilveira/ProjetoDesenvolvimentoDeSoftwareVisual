@@ -7,7 +7,7 @@ namespace API.Models
         public Paciente() => CriadoEm = DateTime.Now;
 
         public int Id { get; set; }
-        public string ConvenioNome { get; set; }
+        public int ConvenioId { get; set; }
         public Convenio Convenio { get; set; }
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
