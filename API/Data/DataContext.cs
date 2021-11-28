@@ -21,5 +21,9 @@ namespace API.Data
         //Tabela de convenios cadastrados
         public DbSet<Convenio> Convenios { get; set; }
 
+        //Tabela de triagens cadastrados
+        public DbSet<Triagem> Triagens { get; set; }
+
+
     }
 }
