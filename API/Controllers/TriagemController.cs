@@ -1,7 +1,9 @@
+using System.Linq;
 using API.Data;
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace API.Controllers
 {
@@ -15,31 +17,42 @@ namespace API.Controllers
             _context = context;
         }
 
-        //POST: api/triagem/create
+         //POST: api/triagem/create
         [HttpPost]
-        [Route("create")]
-        public IActionResult Create([FromBody] TriagemRequest triagemRequest)
+        [Route("triagem/create")]
+        public IActionResult createTriagem([FromBody] List<Sintoma> sintomas)
         {
-            Paciente paciente = _context.Pacientes.Find(triagemRequest.Paciente);
-            Enfermeiro enfermeiro = _context.Enfermeiros.Find(triagemRequest.Enfermeiro);
+            var atendimento = _context.Atendimentos.FromSqlRaw("SELECT TOP 1 * FROM dbo.Atendimentos a ORDER BY CriadoEm ASC").ToList();
+            if(atendimento != null){
+                // Paciente paciente = _context.Pacientes.Find(atendimento.PacienteId);
 
-            var triagem = new Triagem();
+                Triagem triagem = new Triagem();
 
-            triagem.Enfermeiro = enfermeiro;
-            triagem.Paciente = paciente;
+                // triagem.Paciente = paciente;
 
-            _context.Triagens.Add(triagem);
-            _context.SaveChanges();
-            return Created("", triagem);
+                int intensidade = 0;
+                
+                // List<Sintoma> lista = new List<Sintoma>();
+
+                // SintomaTriagem sintomaTriagem = new SintomaTriagem();
+
+                foreach (var sintoma in sintomas){
+                    triagem.Sintomas.Add(sintoma);
+                    intensidade += sintoma.GrauIntensidade;
+                }
+                return Created("", triagem);
+
+                triagem.Urgencia = intensidade;
+
+                _context.Triagens.Add(triagem);
+                // _context.SintomaTriagem.Add(sintomaTriagem);
+
+                _context.SaveChanges();
+                
+                return Created("", triagem);
+            }
+
+            return BadRequest("Reject");
         }
-
-        // //GET: api/triagem/list
-        // [HttpGet]
-        // [Route("fila")]
-        // public IActionResult Fila() {
-        //     _context.Enfermeiros.ToList();
-        //     return null;
-        // }
-
     }
 }
