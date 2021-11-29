@@ -1,12 +1,12 @@
-### Cria o atendimento
+### Cria novo atendimento
 POST https://localhost:5001/api/atendimento/create/2/1
 
-### Retorna o próximo paciente da lista
+### Chama próximo paciente para atendimento
 GET https://localhost:5001/api/atendimento/get-prox/
 
-### Retorna a fila de atendimento
+### Mostra a fila para atendimento
 GET https://localhost:5001/api/atendimento/lista/
 
-### Chama o paciente para o atendimento na triagem (libera o paciente, altera o valor do boolean)
+### Envia paciente para triagem - Chama o paciente para o atendimento (libera o paciente, altera o valor do boolean)
 GET https://localhost:5001/api/atendimento/next/
 

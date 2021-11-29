@@ -1,6 +1,7 @@
 using System.Linq;
 using API.Data;
 using API.Models;
+using Microsoft.AspNetCore.Hosting.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,7 +21,7 @@ namespace API.Controllers
         //GET: api/atendimento/lista
         [HttpGet]
         [Route("lista")]
-        public IActionResult getFilaAtendimento()
+        public IActionResult MostraFilaParaAtendimento()
         {
             var listaPacienteOrdenado = _context.Atendimentos.FromSqlRaw("SELECT * FROM dbo.Atendimentos ORDER BY CriadoEm ASC").ToList();
             
@@ -31,28 +32,27 @@ namespace API.Controllers
         //GET: api/atendimento/next
         [HttpGet]
         [Route("next")]
-        public IActionResult nextAtendimento()
+        public IActionResult EnviaPacienteParaTriagem()
         {
-            Atendimento atendimento = _context.Atendimentos.FromSqlRaw("SELECT TOP 1 * FROM dbo.Atendimentos p ORDER BY CriadoEm ASC").FirstOrDefault<Atendimento>();
+            Atendimento atendimento = _context.Atendimentos.FirstOrDefault(a => a.Aberto);
             
-            atendimento.Aberto = true;
-            // Enfermeiro enfermeiro = _context.Enfermeiros.Find(atendimento.Enfermeiro.Id);
-            // Paciente paciente = _context.Pacientes.Find(atendimento.Paciente.Id);
-            _context.Update(atendimento);
+            _context.Remove(atendimento);
             _context.SaveChanges();
 
             return Created("", atendimento);
         }
 
         // Retorna o próximo paciente para triagem
-        //GET: api/atendimento/next
+        //GET: api/atendimento/get-prox
         [HttpGet]
         [Route("get-prox")]
-        public IActionResult getProxPaciente()
+        public IActionResult ProximoPacienteParaAtendimento()
         {
-            Atendimento atendimento = _context.Atendimentos.FromSqlRaw("SELECT * FROM dbo.Atendimentos a WHERE a.Aberto = 1").FirstOrDefault<Atendimento>();
-            
+            Atendimento atendimento = _context.Atendimentos.FirstOrDefault(a => !a.Aberto);
 
+            atendimento.Aberto = true;
+            _context.Update(atendimento);
+            _context.SaveChanges();
             return Ok(atendimento);
         }
 
@@ -63,11 +63,13 @@ namespace API.Controllers
         {
             Paciente paciente = _context.Pacientes.Find(idP);
             Enfermeiro enfermeiro = _context.Enfermeiros.Find(idE);
+
             if(paciente != null && enfermeiro != null){
                 Atendimento atendimento = new Atendimento();
 
                 atendimento.PacienteId = paciente.Id;
                 atendimento.Paciente = paciente;
+                atendimento.EnfermeiroId = enfermeiro.Id;
                 atendimento.Enfermeiro = enfermeiro;
 
                 _context.Atendimentos.Add(atendimento);

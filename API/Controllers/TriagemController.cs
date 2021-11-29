@@ -40,7 +40,6 @@ namespace API.Controllers
                     triagem.Sintomas.Add(sintoma);
                     intensidade += sintoma.GrauIntensidade;
                 }
-                return Created("", triagem);
 
                 triagem.Urgencia = intensidade;
 
