@@ -17,7 +17,7 @@ namespace API.Controllers
             _context = context;
         }
 
-        //GET: api/fila/atendimento/lista
+        //GET: api/atendimento/lista
         [HttpGet]
         [Route("lista")]
         public IActionResult getFilaAtendimento()
@@ -28,7 +28,7 @@ namespace API.Controllers
         }
 
         // Coloca o paciente como o próximo da fila para triagem
-        //GET: api/fila/atendimento/next
+        //GET: api/atendimento/next
         [HttpGet]
         [Route("next")]
         public IActionResult nextAtendimento()
@@ -45,7 +45,7 @@ namespace API.Controllers
         }
 
         // Retorna o próximo paciente para triagem
-        //GET: api/fila/atendimento/next
+        //GET: api/atendimento/next
         [HttpGet]
         [Route("get-prox")]
         public IActionResult getProxPaciente()
@@ -56,8 +56,8 @@ namespace API.Controllers
             return Ok(atendimento);
         }
 
-        //GET: api/fila/atendimento/create
-        [HttpGet]
+        //POST: api/atendimento/create
+        [HttpPost]
         [Route("create/{idP}/{idE}")]
         public IActionResult createAtendimento(int idP, int idE)
         {

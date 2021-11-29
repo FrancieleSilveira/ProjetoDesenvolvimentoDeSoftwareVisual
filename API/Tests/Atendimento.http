@@ -1,5 +1,5 @@
 ### Cria o atendimento
-GET https://localhost:5001/api/atendimento/create/2/1
+POST https://localhost:5001/api/atendimento/create/2/1
 
 ### Retorna o próximo paciente da lista
 GET https://localhost:5001/api/atendimento/get-prox/
