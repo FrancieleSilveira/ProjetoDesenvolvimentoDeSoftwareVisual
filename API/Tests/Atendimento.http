@@ -1,0 +1,7 @@
+POST https://localhost:5001/api/atendimento/create
+
+Content-Type: application/json
+{
+    "PacienteId" : 1,
+    "EnfermeiroId" : 1
+}

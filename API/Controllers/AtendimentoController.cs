@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
+    [ApiController]
+    [Route("api/atendimento")]
     public class AtendimentoController : ControllerBase
     {
 
@@ -17,7 +19,7 @@ namespace API.Controllers
 
         //GET: api/fila/atendimento/lista
         [HttpGet]
-        [Route("atendimento/lista")]
+        [Route("lista")]
         public IActionResult getFilaAtendimento()
         {
             var listaPacienteOrdenado = _context.Atendimentos.FromSqlRaw("SELECT * FROM dbo.Atendimentos ORDER BY CriadoEm ASC").ToList();
@@ -28,7 +30,7 @@ namespace API.Controllers
         // Coloca o paciente como o próximo da fila para triagem
         //GET: api/fila/atendimento/next
         [HttpGet]
-        [Route("atendimento/next")]
+        [Route("next")]
         public IActionResult nextAtendimento()
         {
             Atendimento atendimento = _context.Atendimentos.FromSqlRaw("SELECT TOP 1 * FROM dbo.Atendimentos p ORDER BY CriadoEm ASC").FirstOrDefault<Atendimento>();
@@ -45,7 +47,7 @@ namespace API.Controllers
         // Retorna o próximo paciente para triagem
         //GET: api/fila/atendimento/next
         [HttpGet]
-        [Route("atendimento/get-prox")]
+        [Route("get-prox")]
         public IActionResult getProxPaciente()
         {
             Atendimento atendimento = _context.Atendimentos.FromSqlRaw("SELECT * FROM dbo.Atendimentos a WHERE a.Aberto = 1").FirstOrDefault<Atendimento>();
@@ -56,11 +58,12 @@ namespace API.Controllers
 
         //GET: api/fila/atendimento/create
         [HttpGet]
-        [Route("atendimento/create/{idP}/{idE}")]
+        [Route("create/{idP}/{idE}")]
         public IActionResult createAtendimento(int idP, int idE)
         {
             Paciente paciente = _context.Pacientes.Find(idP);
             Enfermeiro enfermeiro = _context.Enfermeiros.Find(idE);
+            return Ok(enfermeiro);
             if(paciente != null && enfermeiro != null){
                 Atendimento atendimento = new Atendimento();
 
