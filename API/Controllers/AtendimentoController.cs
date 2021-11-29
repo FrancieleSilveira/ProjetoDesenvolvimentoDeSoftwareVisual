@@ -63,7 +63,6 @@ namespace API.Controllers
         {
             Paciente paciente = _context.Pacientes.Find(idP);
             Enfermeiro enfermeiro = _context.Enfermeiros.Find(idE);
-            return Ok(enfermeiro);
             if(paciente != null && enfermeiro != null){
                 Atendimento atendimento = new Atendimento();
 

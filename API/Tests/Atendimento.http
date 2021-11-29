@@ -1,7 +1,12 @@
-POST https://localhost:5001/api/atendimento/create
+### Cria o atendimento
+GET https://localhost:5001/api/atendimento/create/2/1
 
-Content-Type: application/json
-{
-    "PacienteId" : 1,
-    "EnfermeiroId" : 1
-}
+### Retorna o próximo paciente da lista
+GET https://localhost:5001/api/atendimento/get-prox/
+
+### Retorna a fila de atendimento
+GET https://localhost:5001/api/atendimento/lista/
+
+### Chama o paciente para o atendimento na triagem (libera o paciente, altera o valor do boolean)
+GET https://localhost:5001/api/atendimento/next/
+
