@@ -5,6 +5,13 @@ namespace API.Data
 {
     public class DataContext : DbContext
     {
+
+        // protected override void OnModelCreating(ModelBuilder modelBuilder)
+        // {
+        //     modelBuilder.Entity<SintomaTriagem>()
+        //         .HasKey(st => new { st.SintomaId, st.TriagemId });
+        // }
+
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         //Lista de propriedades que vão virar tabelas no banco
@@ -23,7 +30,8 @@ namespace API.Data
 
         //Tabela de triagens cadastrados
         public DbSet<Triagem> Triagens { get; set; }
-
+        public DbSet<Atendimento> Atendimentos { get; set; }
+        // public DbSet<SintomaTriagem> SintomaTriagem { get; set; }
 
     }
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20211128133155_atributoAtendidoPaciente")]
-    partial class atributoAtendidoPaciente
+    [Migration("20211129001948_migration2")]
+    partial class migration2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,34 @@ namespace API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("API.Models.Atendimento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Aberto")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EnfermeiroId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PacienteId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EnfermeiroId");
+
+                    b.HasIndex("PacienteId");
+
+                    b.ToTable("Atendimentos");
+                });
 
             modelBuilder.Entity("API.Models.Convenio", b =>
                 {
@@ -91,9 +119,6 @@ namespace API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Atendido")
-                        .HasColumnType("bit");
-
                     b.Property<int>("ConvenioId")
                         .HasColumnType("int");
 
@@ -156,19 +181,52 @@ namespace API.Migrations
                     b.Property<DateTime>("CriadoEm")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("EnfermeiroId")
+                    b.Property<int>("PacienteId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PacienteId")
+                    b.Property<int>("Urgencia")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EnfermeiroId");
-
-                    b.HasIndex("PacienteId");
+                    b.HasIndex("PacienteId")
+                        .IsUnique();
 
                     b.ToTable("Triagens");
+                });
+
+            modelBuilder.Entity("SintomaTriagem", b =>
+                {
+                    b.Property<int>("SintomasId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TriagensId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SintomasId", "TriagensId");
+
+                    b.HasIndex("TriagensId");
+
+                    b.ToTable("SintomaTriagem");
+                });
+
+            modelBuilder.Entity("API.Models.Atendimento", b =>
+                {
+                    b.HasOne("API.Models.Enfermeiro", "Enfermeiro")
+                        .WithMany()
+                        .HasForeignKey("EnfermeiroId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Models.Paciente", "Paciente")
+                        .WithMany()
+                        .HasForeignKey("PacienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Enfermeiro");
+
+                    b.Navigation("Paciente");
                 });
 
             modelBuilder.Entity("API.Models.Paciente", b =>
@@ -184,17 +242,33 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Triagem", b =>
                 {
-                    b.HasOne("API.Models.Enfermeiro", "Enfermeiro")
-                        .WithMany()
-                        .HasForeignKey("EnfermeiroId");
-
                     b.HasOne("API.Models.Paciente", "Paciente")
-                        .WithMany()
-                        .HasForeignKey("PacienteId");
-
-                    b.Navigation("Enfermeiro");
+                        .WithOne("Triagem")
+                        .HasForeignKey("API.Models.Triagem", "PacienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Paciente");
+                });
+
+            modelBuilder.Entity("SintomaTriagem", b =>
+                {
+                    b.HasOne("API.Models.Sintoma", null)
+                        .WithMany()
+                        .HasForeignKey("SintomasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Models.Triagem", null)
+                        .WithMany()
+                        .HasForeignKey("TriagensId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("API.Models.Paciente", b =>
+                {
+                    b.Navigation("Triagem");
                 });
 #pragma warning restore 612, 618
         }
